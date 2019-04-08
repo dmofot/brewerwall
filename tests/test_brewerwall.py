@@ -43,8 +43,7 @@ class TestBrewerwall(unittest.TestCase):
         self.assertEqual(5.943353419684101, brewerwall.srm(7.5, 5.5, 5.5))
     
     def testAAU(self):
-        """
-        Test Alpha Acid Units.
+        """Test Alpha Acid Unit calculation.
 
         Based off Palmer's Calculation
         """
@@ -59,8 +58,7 @@ class TestBrewerwall(unittest.TestCase):
         self.assertEqual(0.14780486892282785, brewerwall.utilization(45, 1.090))
     
     def testIBU(self):
-        """
-        Test International Bittering Units calculation.
+        """Test International Bittering Units calculation.
         
         Based off Palmer's Calculation
         """
@@ -72,13 +70,12 @@ class TestBrewerwall(unittest.TestCase):
         self.assertEqual(17.055185000000108, brewerwall.convertToPlato(1.070))
     
     def testRealExtract(self):
-        """Test Reat Extract calculations."""
+        """Test Real Extract calculation."""
         self.assertEqual(6.216277095999994, brewerwall.realExtract(1.070, 1.015))
         self.assertEqual(None, brewerwall.realExtract(1.015, 1.070))
     
     def testCalories(self):
-        """
-        Test calories per 12 oz. serving calculation.
+        """Test calories per 12 oz. serving calculation.
         
         Based on http://hbd.org/ensmingr/
         """
@@ -92,7 +89,7 @@ class TestBrewerwall(unittest.TestCase):
     
     def testGravityCorrection(self):
         """Test gravity correction calculation."""
-        self.assertEqual(1.0562227410997, brewerwall.gravityCorrection(100.4, 1.050, 60))
+        self.assertEqual(1.0562227410996516, brewerwall.gravityCorrection(100.4, 1.050, 60))
     
     def test_command_line_interface(self):
         """Test the CLI."""
