@@ -2,7 +2,7 @@
 History
 =======
 
-0.2.2 (2019-05-17)
+0.3 (2019-05-17)
 ------------------
 
 * Clean up code formating with Black.

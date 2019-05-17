@@ -15,3 +15,4 @@ twine = "*"
 
 [packages]
 click = "*"
+brewerwall = {editable = true,path = "."}

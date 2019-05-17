@@ -15,7 +15,7 @@ def abv(originalGravity: float, finalGravity: float) -> float:
         Original gravity of wort.
     finalGravity : float
         Final gravity of beer.
-    
+
     Returns
     -------
     float or None
@@ -40,7 +40,7 @@ def abw(originalGravity: float, finalGravity: float) -> float:
         Original gravity of wort.
     finalGravity : float
         Final gravity of beer.
-    
+
     Returns
     -------
     float or None
@@ -113,7 +113,7 @@ def aau(alphaAcid: float, ounces: float) -> float:
         Alpha acid percentage.
     ounces : float
         Weight in ounces.
-    
+
     Returns
     -------
     float or None
@@ -136,7 +136,7 @@ def utilization(minutes: float, specificGravity: float) -> float:
         Time in minutes.
     specificGravity : float
         Specific gravity.
-    
+
     Returns
     -------
     float
@@ -200,7 +200,7 @@ def convertToPlato(specificGravity: float) -> float:
     ----------
     specificGravity : float
         Specific gravity.
-    
+
     Returns
     -------
     float
@@ -222,7 +222,7 @@ def realExtract(originalGravity: float, finalGravity: float) -> float:
         Original gravity of wort.
     finalGravity : float
         Final gravity of beer.
-    
+
     Returns
     -------
     float or None
@@ -240,14 +240,14 @@ def realExtract(originalGravity: float, finalGravity: float) -> float:
 def calories(originalGravity: float, finalGravity: float) -> float:
     """
     Determine Calories per 12oz Serving.
-    
+
     Parameters
     ----------
     originalGravity : float
         Original gravity of wort.
     finalGravity : float
         Final gravity of beer.
-    
+
     Returns
     -------
     float or None
@@ -277,7 +277,7 @@ def attenuation(originalGravity: float, finalGravity: float) -> float:
         Original gravity of wort.
     finalGravity : float
         Final gravity of beer.
-    
+
     Returns
     -------
     float or None
@@ -304,7 +304,7 @@ def gravityCorrection(
         Specific gravity.
     calibrationFahrenheit : float
         Calibration temperature in fahrenheit
-    
+
     Returns
     -------
     float
@@ -325,4 +325,3 @@ def gravityCorrection(
             - 0.00000000232820948 * pow(calibrationFahrenheit, 3)
         )
     )
-
