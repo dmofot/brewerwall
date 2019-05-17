@@ -4,6 +4,7 @@
 
 from math import pow, e
 
+
 def abv(originalGravity: float, finalGravity: float) -> float:
     """
     Determines the Alochol by Volume (ABV).
@@ -21,10 +22,13 @@ def abv(originalGravity: float, finalGravity: float) -> float:
         Alcohol by Volume.
     """
 
-    if (originalGravity > finalGravity):
-        return ((76.08 * (originalGravity - finalGravity) / (1.775 - originalGravity)) * (finalGravity / 0.794))
+    if originalGravity > finalGravity:
+        return (
+            76.08 * (originalGravity - finalGravity) / (1.775 - originalGravity)
+        ) * (finalGravity / 0.794)
     else:
         return
+
 
 def abw(originalGravity: float, finalGravity: float) -> float:
     """
@@ -43,10 +47,11 @@ def abw(originalGravity: float, finalGravity: float) -> float:
         Alcohol by Weight.
     """
 
-    if (originalGravity > finalGravity):
-        return ((0.79 * abv(originalGravity, finalGravity)) / finalGravity)
+    if originalGravity > finalGravity:
+        return (0.79 * abv(originalGravity, finalGravity)) / finalGravity
     else:
         return
+
 
 def mcu(pounds: float, lovibond: float, gallons: float) -> float:
     """
@@ -67,8 +72,8 @@ def mcu(pounds: float, lovibond: float, gallons: float) -> float:
         Malt Color Unit.
     """
 
-    if (gallons != 0):
-        return ((pounds * lovibond) / gallons)
+    if gallons != 0:
+        return (pounds * lovibond) / gallons
     else:
         return
 
@@ -91,11 +96,12 @@ def srm(pounds: float, lovibond: float, gallons: float) -> float:
     float or None
         Standard Reference Method.
     """
-    
-    if (gallons != 0):
-        return (1.4922 * (pow(mcu(pounds, lovibond, gallons), 0.6859)))
+
+    if gallons != 0:
+        return 1.4922 * (pow(mcu(pounds, lovibond, gallons), 0.6859))
     else:
         return
+
 
 def aau(alphaAcid: float, ounces: float) -> float:
     """
@@ -115,9 +121,10 @@ def aau(alphaAcid: float, ounces: float) -> float:
     """
 
     if (alphaAcid and ounces) > 0:
-        return (alphaAcid * ounces)
+        return alphaAcid * ounces
     else:
         return
+
 
 def utilization(minutes: float, specificGravity: float) -> float:
     """
@@ -136,9 +143,20 @@ def utilization(minutes: float, specificGravity: float) -> float:
         Hop Utilization.
     """
 
-    return ((1.65 * pow(0.000125, (specificGravity - 1))) * (1 - pow(e, (-0.04 * minutes))) / 4.15)
+    return (
+        (1.65 * pow(0.000125, (specificGravity - 1)))
+        * (1 - pow(e, (-0.04 * minutes)))
+        / 4.15
+    )
 
-def ibu(alphaAcid: float, ounces: float, minutes: float, specificGravity: float, gallons: float) -> float:
+
+def ibu(
+    alphaAcid: float,
+    ounces: float,
+    minutes: float,
+    specificGravity: float,
+    gallons: float,
+) -> float:
     """
     Determines International Bitterness Units (IBU).
 
@@ -161,10 +179,16 @@ def ibu(alphaAcid: float, ounces: float, minutes: float, specificGravity: float,
         International Bitterness Units.
     """
 
-    if (gallons != 0):
-        return (aau(alphaAcid, ounces) * utilization(minutes, specificGravity) * 75 / gallons)
+    if gallons != 0:
+        return (
+            aau(alphaAcid, ounces)
+            * utilization(minutes, specificGravity)
+            * 75
+            / gallons
+        )
     else:
         return
+
 
 def convertToPlato(specificGravity: float) -> float:
     """
@@ -183,7 +207,8 @@ def convertToPlato(specificGravity: float) -> float:
         Degress plato.
     """
 
-    return ((-463.37) + (668.72 * specificGravity) - (205.35 * pow(specificGravity, 2)))
+    return (-463.37) + (668.72 * specificGravity) - (205.35 * pow(specificGravity, 2))
+
 
 def realExtract(originalGravity: float, finalGravity: float) -> float:
     """
@@ -203,11 +228,14 @@ def realExtract(originalGravity: float, finalGravity: float) -> float:
     float or None
         Real extract value.
     """
-    
-    if (originalGravity > finalGravity):
-        return ((0.1808 * convertToPlato(originalGravity)) + (0.8192 * convertToPlato(finalGravity)))
+
+    if originalGravity > finalGravity:
+        return (0.1808 * convertToPlato(originalGravity)) + (
+            0.8192 * convertToPlato(finalGravity)
+        )
     else:
         return
+
 
 def calories(originalGravity: float, finalGravity: float) -> float:
     """
@@ -226,10 +254,18 @@ def calories(originalGravity: float, finalGravity: float) -> float:
         Calories.
     """
 
-    if (originalGravity > finalGravity):
-        return (((6.9 * abw(originalGravity, finalGravity)) + 4.0 * (realExtract(originalGravity, finalGravity) - 0.1)) * finalGravity * 3.55)
+    if originalGravity > finalGravity:
+        return (
+            (
+                (6.9 * abw(originalGravity, finalGravity))
+                + 4.0 * (realExtract(originalGravity, finalGravity) - 0.1)
+            )
+            * finalGravity
+            * 3.55
+        )
     else:
         return
+
 
 def attenuation(originalGravity: float, finalGravity: float) -> float:
     """
@@ -248,12 +284,15 @@ def attenuation(originalGravity: float, finalGravity: float) -> float:
         Attenuation.
     """
 
-    if (originalGravity > finalGravity):
-        return ((originalGravity - finalGravity) / (originalGravity - 1))
+    if originalGravity > finalGravity:
+        return (originalGravity - finalGravity) / (originalGravity - 1)
     else:
         return
 
-def gravityCorrection(fahrenheit: float, specificGravity: float, calibrationFahrenheit: float) -> float:
+
+def gravityCorrection(
+    fahrenheit: float, specificGravity: float, calibrationFahrenheit: float
+) -> float:
     """
     Determines Gravity Temperature Correction.
 
@@ -272,4 +311,18 @@ def gravityCorrection(fahrenheit: float, specificGravity: float, calibrationFahr
         Gravity temperature correction.
     """
 
-    return (specificGravity * ((1.00130346 - 0.000134722124 * fahrenheit + 0.00000204052596 * pow(fahrenheit, 2) - 0.00000000232820948 * pow(fahrenheit, 3)) / (1.00130346 - 0.000134722124 * calibrationFahrenheit + 0.00000204052596 * pow(calibrationFahrenheit, 2) - 0.00000000232820948 * pow(calibrationFahrenheit, 3))))
+    return specificGravity * (
+        (
+            1.00130346
+            - 0.000134722124 * fahrenheit
+            + 0.00000204052596 * pow(fahrenheit, 2)
+            - 0.00000000232820948 * pow(fahrenheit, 3)
+        )
+        / (
+            1.00130346
+            - 0.000134722124 * calibrationFahrenheit
+            + 0.00000204052596 * pow(calibrationFahrenheit, 2)
+            - 0.00000000232820948 * pow(calibrationFahrenheit, 3)
+        )
+    )
+

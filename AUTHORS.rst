@@ -2,6 +2,12 @@
 Credits
 =======
 
+Original PHP Developer
+----------------------
+
+* Ben Griffith <griffith.ben@gmail.com>
+  https://github.com/brewerwall/beercalc_php
+
 Development Lead
 ----------------
 
